@@ -2,16 +2,26 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { CarsModule } from './cars/cars.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { databaseConfig } from './config/database.config';
+import { ConfigModule } from '@nestjs/config';
+import { envValidationSchema } from './config/envValidation.config';
 
 @Module({
   imports: [
-    CarsModule,
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: './database/my-db.sqlite3',
-      autoLoadEntities: true,
-      synchronize: true,
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
     }),
+    CarsModule,
+    TypeOrmModule.forRootAsync(databaseConfig),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: [`.env`],
+      validationSchema: envValidationSchema,
+    }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [],
