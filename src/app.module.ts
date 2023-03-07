@@ -7,6 +7,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { databaseConfig } from './config/database.config';
 import { ConfigModule } from '@nestjs/config';
 import { envValidationSchema } from './config/envValidation.config';
+import { OfficesModule } from './offices/offices.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { envValidationSchema } from './config/envValidation.config';
       validationSchema: envValidationSchema,
     }),
     AuthModule,
+    OfficesModule,
   ],
   controllers: [AppController],
   providers: [],

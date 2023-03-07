@@ -1,0 +1,28 @@
+### Create office
+POST http://localhost:3000/offices
+Content-Type: application/json
+
+{
+  "name": "Siedziba 1",
+  "city": "Wrocław",
+  "country": "Poland",
+  "streetAddress": "Wrocławksa 22",
+  "zipCode": "55-555"
+}
+
+### Read cars
+GET http://localhost:3000/offices
+
+### Read car
+GET http://localhost:3000/offices/2
+
+### Update car
+PATCH http://localhost:3000/offices/2
+Content-Type: application/json
+
+{
+  "zipCode": "10-255"
+}
+
+### Delete car
+DELETE http://localhost:3000/offices/1
