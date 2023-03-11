@@ -3,24 +3,25 @@ POST http://localhost:3000/cars
 Content-Type: application/json
 
 {
-  "name": "Leon",
-  "brand": "Seat",
-  "model": "Leon",
-  "plates": "DWR 9932342"
+  "name": "Toyota",
+  "brand": "Toyota",
+  "model": "RAV 6",
+  "plates": "DWR 93333",
+  "officeId": 3
 }
 
 ### Read cars
 GET http://localhost:3000/cars
 
 ### Read car
-GET http://localhost:3000/cars/2
+GET http://localhost:3000/cars/9
 
 ### Update car
-PATCH http://localhost:3000/cars/2
+PATCH http://localhost:3000/cars/9
 Content-Type: application/json
 
 {
-  "plates": "DW 21112"
+  "officeId": 3
 }
 
 ### Delete car

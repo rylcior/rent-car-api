@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Car } from '../cars/car.entity';
 
 @Entity()
 export class Office extends BaseEntity {
@@ -18,4 +25,7 @@ export class Office extends BaseEntity {
 
   @Column({ type: 'varchar' })
   zipCode: string;
+
+  @OneToMany(() => Car, (car: Car) => car.office)
+  cars: Car[];
 }

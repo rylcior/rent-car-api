@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsNumber } from 'class-validator';
 export class UpdateCarDto {
   @IsString()
   @IsOptional()
@@ -14,4 +14,8 @@ export class UpdateCarDto {
   @IsString()
   @IsOptional()
   plates?: string;
+
+  @IsNumber()
+  @IsOptional()
+  officeId?: number;
 }

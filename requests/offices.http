@@ -3,20 +3,20 @@ POST http://localhost:3000/offices
 Content-Type: application/json
 
 {
-  "name": "Siedziba 1",
+  "name": "Siedziba 2",
   "city": "Wrocław",
   "country": "Poland",
   "streetAddress": "Wrocławksa 22",
   "zipCode": "55-555"
 }
 
-### Read cars
+### Read offices
 GET http://localhost:3000/offices
 
-### Read car
-GET http://localhost:3000/offices/2
+### Read office
+GET http://localhost:3000/offices/3
 
-### Update car
+### Update office
 PATCH http://localhost:3000/offices/2
 Content-Type: application/json
 
@@ -24,5 +24,5 @@ Content-Type: application/json
   "zipCode": "10-255"
 }
 
-### Delete car
+### Delete office
 DELETE http://localhost:3000/offices/1

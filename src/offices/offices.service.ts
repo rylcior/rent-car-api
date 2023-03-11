@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Office } from './office.entity';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { CreateOfficeDto } from './dto/create-office.dto';
 import { UpdateOfficeDto } from './dto/update-office.dto';
 
@@ -17,13 +17,22 @@ export class OfficesService {
   }
 
   async read(): Promise<{ result: Office[]; total: number }> {
-    const [result, total] = await this.officeRepository.findAndCount();
+    const [result, total] = await this.officeRepository.findAndCount({
+      relations: {
+        cars: true,
+      },
+    });
 
     return { result, total };
   }
 
   async getOneById(id: number): Promise<Office> {
-    const office = await this.officeRepository.findOneBy({ id });
+    const office = await this.officeRepository.findOne({
+      where: { id: Equal(id) },
+      relations: {
+        cars: true,
+      },
+    });
 
     if (!office) {
       throw new NotFoundException('Office not found');

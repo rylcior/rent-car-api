@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Office } from '../offices/office.entity';
 
 @Entity()
 export class Car extends BaseEntity {
@@ -16,4 +23,7 @@ export class Car extends BaseEntity {
 
   @Column({ type: 'varchar' })
   plates: string;
+
+  @ManyToOne(() => Office, (office: Office) => office.cars)
+  office: Office;
 }
